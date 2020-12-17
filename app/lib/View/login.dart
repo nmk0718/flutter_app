@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:convert' show json;
+import 'package:app/model/userinfo.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'home.dart';
+import 'package:dio/dio.dart';
 
 class login extends StatelessWidget {
   @override
@@ -42,13 +47,35 @@ class loginFromState extends State<loginFrom> {
   String username, password;
   bool autovalidate = false;
 
-  void submitloginForm() {
+  // void gethttp() async{
+  //   var dio = Dio();
+  //   Response response = await dio.get("https://dev.360ljk.com/");
+  //   json.decode(response.toString());
+  //   userinfo user_info = userinfo.fromJson(json.decode(response.toString()));
+  //   print(user_info.user[0].userName + user_info.user[0].userPass);
+  // }
+
+  void submitloginForm() async {
+
+    //检测网络是否异常,先试用控制台打印,后更改为提示框
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+        debugPrint('网络连接异常');
+      return;
+    }
+    var dio = Dio();
+    Response response = await dio.get("https://dev.360ljk.com/");
+    json.decode(response.toString());
+    userinfo user_info = userinfo.fromJson(json.decode(response.toString()));
+
+
     if (loginFromKey.currentState.validate()) {
       loginFromKey.currentState.save();
 
       debugPrint('账号: $username');
       debugPrint('密码: $password');
-      if (username == '18516566171' && password == 'nimingkun') {
+      debugPrint(user_info.user[0].userName +  user_info.user[0].userPass);
+      if (username == user_info.user[0].userName && password == user_info.user[0].userPass ) {
         //提示注册中
         Scaffold.of(context).showSnackBar(SnackBar(content: Text('登录成功')));
         Navigator.of(context).pushAndRemoveUntil(
@@ -97,13 +124,13 @@ class loginFromState extends State<loginFrom> {
               hintText: '请输入账号/手机号/邮箱',
               helperText: '',
             ),
-            validator: (value) {
-              if (value.length >= 12) {
-                return "请使用正确的账号";
-              } else if (value.length <= 10) {
-                return "请使用正确的账号";
-              }
-            },
+              // validator: (value) {
+              //   if (value.length >= 12) {
+              //     return "请使用正确的账号";
+              //   } else if (value.length <= 10) {
+              //     return "请使用正确的账号";
+              //   }
+              // },
             onSaved: (value) {
               username = value;
             },
@@ -120,13 +147,13 @@ class loginFromState extends State<loginFrom> {
               hintText: '请输入密码',
               helperText: '',
             ),
-            validator: (value) {
-              if (value.length <= 8) {
-                return "请使用正确的密码";
-              } else if (value.length >= 16) {
-                return "请使用正确的密码";
-              }
-            },
+            // validator: (value) {
+            //   if (value.length <= 8) {
+            //     return "请使用正确的密码";
+            //   } else if (value.length >= 16) {
+            //     return "请使用正确的密码";
+            //   }
+            // },
             onSaved: (value) {
               password = value;
             },
