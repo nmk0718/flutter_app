@@ -72,6 +72,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttery:
+    dependency: transitive
+    description:
+      name: fluttery
+      url: "https://dart-pub.mirrors.sjtug.sjtu.edu.cn"
+    source: hosted
+    version: "0.0.8"
+  fluttery_seekbar:
+    dependency: "direct main"
+    description:
+      name: fluttery_seekbar
+      url: "https://dart-pub.mirrors.sjtug.sjtu.edu.cn"
+    source: hosted
+    version: "0.0.1"
   intl:
     dependency: transitive
     description:

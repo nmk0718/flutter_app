@@ -25,9 +25,13 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  fluttery_seekbar:
-    path: fluttery_seekbar
 
+  fluttery:
+    git:
+      url: https://github.com/miguelramosfdz/fluttery.git
+  fluttery_seekbar:
+    git:
+      url: https://github.com/roipeker/fluttery_seekbar.git
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
