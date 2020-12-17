@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app/View/register.dart';
 import 'package:app/View/login.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'View/home.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
         //初始根路由
         initialRoute: '/login',
         routes: {
+          '/register': (context) => register(),
           '/login': (context) => login(),
           '/home': (context) => home(),
         },
