@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:convert' show json;
 import 'package:app/model/userinfo.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -47,14 +48,6 @@ class loginFromState extends State<loginFrom> {
   String username, password;
   bool autovalidate = false;
 
-  // void gethttp() async{
-  //   var dio = Dio();
-  //   Response response = await dio.get("https://dev.360ljk.com/");
-  //   json.decode(response.toString());
-  //   userinfo user_info = userinfo.fromJson(json.decode(response.toString()));
-  //   print(user_info.user[0].userName + user_info.user[0].userPass);
-  // }
-
   void submitloginForm() async {
 
     //检测网络是否异常,先试用控制台打印,后更改为提示框
@@ -64,7 +57,8 @@ class loginFromState extends State<loginFrom> {
       return;
     }
     var dio = Dio();
-    Response response = await dio.get("https://dev.360ljk.com/");
+    Response response = await dio.post("http://192.168.10.228/jar/");
+    //response.headers.set('content-type', 'application/json');
     json.decode(response.toString());
     userinfo user_info = userinfo.fromJson(json.decode(response.toString()));
 
@@ -74,16 +68,25 @@ class loginFromState extends State<loginFrom> {
 
       debugPrint('账号: $username');
       debugPrint('密码: $password');
-      debugPrint(user_info.user[0].userName +  user_info.user[0].userPass);
-      if (username == user_info.user[0].userName && password == user_info.user[0].userPass ) {
-        //提示注册中
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('登录成功')));
-        Navigator.of(context).pushAndRemoveUntil(
-            new MaterialPageRoute(builder: (context) => home()),
-            (route) => route == null);
-      } else {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('登录失败')));
-      }
+      debugPrint(user_info.user.length.toString() +  user_info.user[0].userPass);
+
+      for(var i = 0;i < user_info.user.length; i++){
+        var abc_name = user_info.user[i].userName;
+        var abc_password = user_info.user[i].userPass;
+        // print(i);
+        // print(abc_name);
+        // print(abc_password);
+        if (username == abc_name && password == abc_password ) {
+          //提示注册中
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text('登录成功')));
+          Navigator.of(context).pushAndRemoveUntil(
+              new MaterialPageRoute(builder: (context) => home()),
+                  (route) => route == null);
+        } else {
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text('登录失败')));
+        }
+    }
+
     } else {
       setState(() {
         autovalidate = true;
@@ -120,6 +123,9 @@ class loginFromState extends State<loginFrom> {
           child: TextFormField(
             cursorColor: Theme.of(context).accentColor,
             decoration: InputDecoration(
+              // border: OutlineInputBorder(
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
               prefixIcon: Icon(Icons.person_outline),
               hintText: '请输入账号/手机号/邮箱',
               helperText: '',
@@ -196,6 +202,14 @@ class loginFromState extends State<loginFrom> {
             ),
             elevation: 0.0,
             onPressed: submitloginForm,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10.0),
+                topRight: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0),
+                bottomLeft:  Radius.circular(10.0),
+              ),
+            ),
             //onPressed: (){Navigator.pushNamed(context, '/home');},
           ),
         ),

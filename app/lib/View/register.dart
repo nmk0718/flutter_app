@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
 import 'home.dart';
+import 'package:dio/dio.dart';
 
 class register extends StatelessWidget {
   @override
@@ -43,13 +44,30 @@ class RegisterFromState extends State<RegisterFrom> {
   String email, phone, password,confirm;
   bool autovalidate = false;
 
-  void submitRegisterForm() {
+  void submitRegisterForm() async {
+
     if (registerFromKey.currentState.validate()) {
       registerFromKey.currentState.save();
+      ///post请求发送json
+      String url = "http://192.168.10.228/jar/";
+      ///创建Dio
+      Dio input_info = new Dio();
+      ///创建Map 封装参数
+      Map<String,String> map = Map();
+      map['user_email']='$email';
+      map['user_phone']="$phone";
+      map['user_pass']="$password";
+
+      ///发起post请求
+      Response response =  await input_info.post(url,data: map);
+
+      var data = response.data;
+      print(data);
 
       debugPrint('账号: $email');
       debugPrint('账号: $phone');
       debugPrint('密码: $password');
+
       if (email.length >0 && phone.length >0 && password.length >0 && confirm.length >0) {
         //提示注册中
         Scaffold.of(context).showSnackBar(SnackBar(content: Text('注册成功')));
