@@ -57,7 +57,11 @@ class loginFromState extends State<loginFrom> {
       return;
     }
     var dio = Dio();
-    Response response = await dio.post("http://192.168.10.228/jar/");
+    Map<String,String> map = Map();
+    map['username']='张三';
+    map['password']="123456";
+
+    Response response = await dio.post("https://dev.360ljk.com/",data: map);
     //response.headers.set('content-type', 'application/json');
     json.decode(response.toString());
     userinfo user_info = userinfo.fromJson(json.decode(response.toString()));
