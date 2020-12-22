@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:app/model/user_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -41,42 +44,48 @@ class RegisterFrom extends StatefulWidget {
 
 class RegisterFromState extends State<RegisterFrom> {
   final registerFromKey = GlobalKey<FormState>();
-  String email, phone, password,confirm;
   bool autovalidate = false;
+
+  TextEditingController register_name = TextEditingController();
+  TextEditingController register_password = TextEditingController();
+  TextEditingController register_email = TextEditingController();
+  TextEditingController register_phone = TextEditingController();
+  TextEditingController register_confirm = TextEditingController();
 
   void submitRegisterForm() async {
 
     if (registerFromKey.currentState.validate()) {
       registerFromKey.currentState.save();
-      ///post请求发送json
-      String url = "http://192.168.10.228/jar/";
-      ///创建Dio
-      Dio input_info = new Dio();
-      ///创建Map 封装参数
-      Map<String,String> map = Map();
-      map['user_email']='$email';
-      map['user_phone']="$phone";
-      map['user_pass']="$password";
+      if(register_password.text == register_confirm.text){
+        ///post请求发送json
+        String url = "http://192.168.10.228:9090/Add";
+        ///创建Dio
+        Dio input_info = new Dio();
 
-      ///发起post请求
-      Response response =  await input_info.post(url,data: map);
+        ///创建Map 封装参数
+        Map<String, String> map = Map();
+        map['Username'] = register_name.text;
+        map['PassWord'] = register_password.text;
+        map['Email'] = register_email.text;
+        map['Phone'] = register_phone.text;
 
-      var data = response.data;
-      print(data);
-
-      debugPrint('账号: $email');
-      debugPrint('账号: $phone');
-      debugPrint('密码: $password');
-
-      if (email.length >0 && phone.length >0 && password.length >0 && confirm.length >0) {
-        //提示注册中
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('注册成功')));
-        Navigator.of(context).pushAndRemoveUntil(
-            new MaterialPageRoute(builder: (context) => login()),
-                (route) => route == null);
+        ///发起post请求
+        Response response = await input_info.post(url, data: map);
+        json.decode(response.toString());
+        user_login userregister = user_login.fromJson(json.decode(response.toString()));
+        print(userregister.code);
+        if (userregister.code == 1 ) {
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text('登录成功')));
+          Navigator.of(context).pushAndRemoveUntil(
+              new MaterialPageRoute(builder: (context) => login()),
+                  (route) => route == null);
+        }else{
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text('邮箱已注册')));
+        }
       } else {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text('注册失败')));
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text('两次密码不一致')));
       }
+
     } else {
       setState(() {
         autovalidate = true;
@@ -96,12 +105,22 @@ class RegisterFromState extends State<RegisterFrom> {
             cursorColor: Theme.of(context).accentColor,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.person_outline),
+              hintText: '请输入用户名',
+              helperText: '',
+            ),
+            controller: register_name,
+          ),
+        ),
+        Theme(
+          data: ThemeData(accentColor: Colors.lightBlue),
+          child: TextFormField(
+            cursorColor: Theme.of(context).accentColor,
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.mail_outline),
               hintText: '请输入邮箱',
               helperText: '',
             ),
-            onSaved: (value) {
-              email = value;
-            },
+            controller: register_email,
           ),
         ),
         Theme(
@@ -113,9 +132,7 @@ class RegisterFromState extends State<RegisterFrom> {
               hintText: '请输入手机号',
               helperText: '',
             ),
-            onSaved: (value) {
-              phone = value;
-            },
+            controller: register_phone,
           ),
         ),
         Theme(
@@ -129,9 +146,7 @@ class RegisterFromState extends State<RegisterFrom> {
               hintText: '请输入密码',
               helperText: '',
             ),
-            onSaved: (value) {
-              password = value;
-            },
+            controller: register_password,
           ),
         ),
         Theme(
@@ -145,9 +160,7 @@ class RegisterFromState extends State<RegisterFrom> {
               hintText: '请确认密码',
               helperText: '',
             ),
-            onSaved: (value) {
-              confirm = value;
-            },
+            controller: register_confirm,
           ),
         ),
         SizedBox(
