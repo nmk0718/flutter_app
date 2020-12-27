@@ -155,6 +155,13 @@ class homeState extends State<home> {
               title: Text("Settings", textAlign: TextAlign.left,),
               onTap: () => Navigator.pop(context),
             ),
+            AboutListTile(
+                icon: FlutterLogo(),
+                child: Text('About uniqueK'),
+                applicationName: 'uniqueK',
+                applicationVersion: 'V1.0.0',
+                applicationIcon: FlutterLogo(),
+                applicationLegalese: '专注分享Flutter相关内容'),
             SizedBox(height:270),
             ListTile(
               title: Text("切换账号", textAlign: TextAlign.center,),

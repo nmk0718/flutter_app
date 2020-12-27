@@ -29,6 +29,8 @@ class _ScanPageState extends State<ScanPage> {
           ),
           url: url,
         );
+        //外部浏览器打开二维码扫描结果
+        //launch(url);
       }));
     }
   }
