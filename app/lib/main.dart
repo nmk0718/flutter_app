@@ -1,10 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:app/View/register.dart';
 import 'package:app/View/login.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'View/home.dart';
 
-void main() => runApp(App());
+void main() {
+  runApp(App());
+  if (Platform.isAndroid) {
+    //设置Android头部的导航栏透明
+    SystemUiOverlayStyle systemUiOverlayStyle =
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
+}
 
 class App extends StatelessWidget {
   @override
@@ -34,9 +45,6 @@ class App extends StatelessWidget {
           highlightColor: Colors.black12,
           splashColor: Colors.white70,
           accentColor: Colors.lightBlue,
-        )
-    );
+        ));
   }
 }
-
-
