@@ -5,10 +5,13 @@ import 'package:app/View/register.dart';
 import 'package:app/View/login.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'ThemeConfig/ThemeConfig.dart';
+import 'ThemeConfig/ThemeData.dart';
+import 'ThemeConfig/provide_config.dart';
 import 'View/home.dart';
 
 void main() {
-  runApp(App());
+  runApp(ProvideConfig.init(child: App()));
   if (Platform.isAndroid) {
     //设置Android头部的导航栏透明
     SystemUiOverlayStyle systemUiOverlayStyle =
@@ -20,7 +23,9 @@ void main() {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext) {
-    return MaterialApp(
+    return ProvideConfig.connect<ThemeConifgModel>(
+        builder: (context, child, ThemeConifgModel model) {
+      return MaterialApp(
         //国际化处理
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
@@ -38,13 +43,10 @@ class App extends StatelessWidget {
           '/register': (context) => register(),
           '/login': (context) => login(),
           '/home': (context) => home(),
+          '/ThemeConfig': (context) => ThemeConfig(),
         },
-        theme: ThemeData(
-          //顶部颜色
-          primarySwatch: Colors.yellow,
-          highlightColor: Colors.black12,
-          splashColor: Colors.white70,
-          accentColor: Colors.lightBlue,
-        ));
+        theme: model.defalutTheme,
+      );
+    });
   }
 }
