@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
 
 class Post{
-  const Post({
-    this.title,
-    this.author,
-    this.imageUrl,
-    this.description,
-  });
-  final String title;
-  final String author;
-  final String imageUrl;
-  final String description;
+  // const Post({
+  //   this.title,
+  //   this.author,
+  //   this.imageUrl,
+  //   this.description,
+  // });
+
+   String title;
+   String author;
+   String imageUrl;
+   String description;
+  Post({this.title, this.author, this.description, this.imageUrl});
+
+
+  Post.fromJson(Map<String, dynamic> json){
+    title = json['Title'];
+    author = json['Author'];
+    description = json['Description'];
+    imageUrl = json['ImageUrl'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Title'] = this.title;
+    data['Author'] = this.author;
+    data['Description'] = this.description;
+    data['ImageUrl'] = this.imageUrl;
+    return data;
+  }
+
 }
 final List<Post> posts =[
   Post(

@@ -5,6 +5,7 @@ import 'package:app/View/register.dart';
 import 'package:app/View/login.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'Movie/PlayerMovie.dart';
 import 'ThemeConfig/ThemeConfig.dart';
 import 'ThemeConfig/ThemeData.dart';
 import 'ThemeConfig/provide_config.dart';
@@ -44,6 +45,7 @@ class App extends StatelessWidget {
           '/login': (context) => login(),
           '/home': (context) => home(),
           '/ThemeConfig': (context) => ThemeConfig(),
+          '/movie': (context) => VideoScreen(),
         },
         theme: model.defalutTheme,
       );
