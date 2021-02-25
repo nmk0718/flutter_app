@@ -71,7 +71,7 @@ class loginFromState extends State<loginFrom> {
       map['Email'] = login_email.text;
       map['PassWord'] = login_password.text;
       Response response =
-      await dio.post("http://192.168.10.228:9090/login", data: map);
+      await dio.post("http://192.168.10.117:9090/login", data: map);
 
       //Response response = await dio.post("http://192.168.10.228:9090/login");
       //response.headers.set('content-type', 'application/json');

@@ -1,9 +1,8 @@
+import 'package:app/Movie/MoviePage.dart';
+import 'package:app/Music/MusicPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-
 import 'ScanPage.dart';
-import 'login.dart';
 
 enum WhyFarther { add, delet }
 
@@ -18,7 +17,7 @@ class basicState extends State<basic> {
     String result = await showMenu(
         context: context,
         elevation: 0.0,
-        position: RelativeRect.fromLTRB(100.0, 80.0, 0.0, 100.0),
+        position: RelativeRect.fromLTRB(100.0, 110, 0.0, 100.0),
         color: Colors.black12,
         items: <PopupMenuEntry<String>>[
           PopupMenuItem(
@@ -63,8 +62,8 @@ class basicState extends State<basic> {
       case 'scan':
         print('点击了scan');
         Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ScanPage()),
+          context,
+          MaterialPageRoute(builder: (context) => ScanPage()),
         );
         break;
       case 'community':
@@ -76,21 +75,36 @@ class basicState extends State<basic> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: Text('页面'),
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  Menu();
-                }),
+            centerTitle: true,
+            title: Text('页面'),
+            elevation: 0.0,
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    Menu();
+                  }),
+            ],
+            bottom: TabBar(
+                unselectedLabelColor: Colors.black38,
+                indicatorColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.label,
+                indicatorWeight: 1.0,
+                tabs: <Widget>[
+                  Tab(icon: Icon(Icons.music_note)),
+                  Tab(icon: Icon(Icons.slow_motion_video_sharp)),
+                ])),
+        body: TabBarView(
+          children: <Widget>[
+            MusicPage(),
+            MoviePage(),
           ],
         ),
-        body: Center(
-          child: Text("哈哈哈")
-        ));
+      ),
+    );
   }
 }

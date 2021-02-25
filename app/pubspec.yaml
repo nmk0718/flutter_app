@@ -38,6 +38,9 @@ dependencies:
   permission_handler: ^5.0.1+1
   flutter_webview_plugin: ^0.3.11
   url_launcher: ^5.7.10
+  provide: ^1.0.2
+  fijkplayer: ^0.8.7
+  audioplayers: ^0.13.1
 
 dev_dependencies:
   flutter_test:
