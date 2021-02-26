@@ -22,7 +22,7 @@ class listviewState extends State<listview> {
     }
     //传参
     var dio = Dio();
-    Response response = await dio.post("http://192.168.10.117:9090/Tagore");
+    Response response = await dio.post("http://121.4.147.189:9090/Tagore");
 
     json.decode(response.toString());
     TagoreInfo tagoretinfo =
