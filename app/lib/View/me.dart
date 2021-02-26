@@ -50,6 +50,13 @@ class MeState extends State<Me> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.movie, color: Colors.lightBlueAccent, size: 22.0,),
+            title: Text("player movie", textAlign: TextAlign.left,),
+            onTap:  () {
+              Navigator.pushNamed(context, '/movie');
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.settings, color: Colors.lightBlueAccent, size: 22.0,),
             title: Text("Settings", textAlign: TextAlign.left,),
             onTap:  () {},

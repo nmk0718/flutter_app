@@ -58,7 +58,7 @@ class RegisterFromState extends State<RegisterFrom> {
       registerFromKey.currentState.save();
       if(register_password.text == register_confirm.text){
         ///post请求发送json
-        String url = "http://192.168.10.228:9090/Add";
+        String url = "http://121.4.147.189:9090/Add";
         ///创建Dio
         Dio input_info = new Dio();
 

@@ -116,6 +116,11 @@ class MusicPageState extends State<MusicPage> {
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
               onTap: (){playremote();},
             ),
+            ListTile(
+              trailing: Icon(Icons.pause, color: Colors.indigoAccent, size: 22.0,),
+              title: Text("暂停", textAlign: TextAlign.left,),
+              onTap: (){stop();},
+            ),
           ]),
     );
   }
