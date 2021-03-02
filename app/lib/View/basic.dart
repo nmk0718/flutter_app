@@ -1,5 +1,6 @@
 import 'package:app/Movie/MoviePage.dart';
 import 'package:app/Music/MusicPage.dart';
+import 'package:app/Shopping/ShoppingCart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ScanPage.dart';

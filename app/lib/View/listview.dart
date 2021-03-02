@@ -12,28 +12,28 @@ class listview extends StatefulWidget {
 }
 
 class listviewState extends State<listview> {
- // List<Map<String,String>> posts = [];
-  void getTagore() async {
-    //检测网络是否异常,先试用控制台打印,后更改为提示框
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-      debugPrint('网络连接异常');
-      return;
-    }
-    //传参
-    var dio = Dio();
-    Response response = await dio.post("http://121.4.147.189:9090/Tagore");
-
-    json.decode(response.toString());
-    TagoreInfo tagoretinfo =
-    TagoreInfo.fromJson(json.decode(response.toString()));
-  }
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getTagore();
-  }
+  //List<Map<String,String>> posts = [];
+  // void getTagore() async {
+  //   //检测网络是否异常,先试用控制台打印,后更改为提示框
+  //   var connectivityResult = await (Connectivity().checkConnectivity());
+  //   if (connectivityResult == ConnectivityResult.none) {
+  //     debugPrint('网络连接异常');
+  //     return;
+  //   }
+  //   //传参
+  //   var dio = Dio();
+  //   Response response = await dio.post("http://121.4.147.189:9090/Tagore");
+  //
+  //   json.decode(response.toString());
+  //   TagoreInfo tagoretinfo =
+  //   TagoreInfo.fromJson(json.decode(response.toString()));
+  // }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   getTagore();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +46,7 @@ class listviewState extends State<listview> {
       ),
       body: ListView.builder(
         itemCount: posts.length,
-        itemBuilder:(c,index){
-          return Container();
-        },
+        itemBuilder:_ListItemBuilder,
       ),
 
     );

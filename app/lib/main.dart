@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:app/Shopping/CommodityPage.dart';
+import 'package:app/Shopping/ShoppingCart.dart';
 import 'package:flutter/material.dart';
 import 'package:app/View/register.dart';
 import 'package:app/View/login.dart';
@@ -39,13 +41,15 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         //home: NavigatorDemo(),
         //初始根路由
-        initialRoute: '/home',
+        initialRoute: '/login',
         routes: {
           '/register': (context) => register(),
           '/login': (context) => login(),
           '/home': (context) => home(),
           '/ThemeConfig': (context) => ThemeConfig(),
           '/movie': (context) => VideoScreen(),
+          '/Commodity': (context) => CommodityPage(),
+          '/shopping': (context) => ShoppingCart(),
         },
         theme: model.defalutTheme,
       );

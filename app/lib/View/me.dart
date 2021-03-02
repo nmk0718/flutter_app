@@ -57,6 +57,20 @@ class MeState extends State<Me> {
             },
           ),
           ListTile(
+            leading: Icon(Icons.shopping_bag, color: Colors.blueAccent, size: 22.0,),
+            title: Text("shopping", textAlign: TextAlign.left,),
+            onTap:  () {
+              Navigator.pushNamed(context, '/Commodity');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.info_outline_sharp, color: Colors.blueAccent, size: 22.0,),
+            title: Text("Cupertino", textAlign: TextAlign.left,),
+            onTap:  () {
+              Navigator.pushNamed(context, '/Cupertino');
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.settings, color: Colors.lightBlueAccent, size: 22.0,),
             title: Text("Settings", textAlign: TextAlign.left,),
             onTap:  () {},
