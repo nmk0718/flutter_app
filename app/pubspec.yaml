@@ -41,6 +41,7 @@ dependencies:
   provide: ^1.0.2
   fijkplayer: ^0.8.7
   audioplayers: ^0.13.1
+  fluttertoast: ^3.0.4
 
 dev_dependencies:
   flutter_test:
