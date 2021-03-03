@@ -41,7 +41,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         //home: NavigatorDemo(),
         //初始根路由
-        initialRoute: '/login',
+        initialRoute: '/home',
         routes: {
           '/register': (context) => register(),
           '/login': (context) => login(),

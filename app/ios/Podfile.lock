@@ -11,9 +11,11 @@ PODS:
   - Flutter (1.0.0)
   - flutter_webview_plugin (0.0.1):
     - Flutter
+  - fluttertoast (0.0.2):
+    - Flutter
   - images_picker (0.0.1):
     - Flutter
-    - ZLPhotoBrowser (= 4.0.7)
+    - ZLPhotoBrowser (= 4.1.3)
   - path_provider (0.0.1):
     - Flutter
   - "permission_handler (5.1.0+2)":
@@ -25,9 +27,9 @@ PODS:
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
-  - ZLPhotoBrowser (4.0.7):
-    - ZLPhotoBrowser/Core (= 4.0.7)
-  - ZLPhotoBrowser/Core (4.0.7)
+  - ZLPhotoBrowser (4.1.3):
+    - ZLPhotoBrowser/Core (= 4.1.3)
+  - ZLPhotoBrowser/Core (4.1.3)
 
 DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
@@ -35,6 +37,7 @@ DEPENDENCIES:
   - fijkplayer (from `.symlinks/plugins/fijkplayer/ios`)
   - Flutter (from `Flutter`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - images_picker (from `.symlinks/plugins/images_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
@@ -59,6 +62,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_webview_plugin:
     :path: ".symlinks/plugins/flutter_webview_plugin/ios"
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
   images_picker:
     :path: ".symlinks/plugins/images_picker/ios"
   path_provider:
@@ -79,14 +84,15 @@ SPEC CHECKSUMS:
   fijkplayer: 0c8728bf3b222203e1fddb08f6899719d88b2b6d
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
-  images_picker: 5166ad88297acad3b6bb2b64924da8ad029f2174
+  fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
+  images_picker: eb05ebd660218fba40842f7d26bc75d946c682e5
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   scan: aea35bb4aa59ccc8839c576a18cd57c7d492cc86
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
-  ZLPhotoBrowser: f85662753ea4cfebff08b3512b17467467634fb2
+  ZLPhotoBrowser: 559062abac47b41ef140cff6ea2370e73623b05f
 
 PODFILE CHECKSUM: cb7f7c4d0c017995db86f679d5d0b5eafd7820d1
 
