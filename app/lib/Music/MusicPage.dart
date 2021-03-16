@@ -9,9 +9,9 @@ class MusicPageState extends State<MusicPage> {
   AudioPlayer audioPlayer = AudioPlayer();
 
   //远程音频
-  playremote() async {
+  playremote(int soundnumber) async {
     int result = await audioPlayer.play(
-        "https://dev.360ljk.com/files/abc.m4a");
+        "https://dev.360ljk.com/files/$soundnumber.mp3");
     if (result == 1) {
       // success
       print('play 远程音频 success');
@@ -60,61 +60,61 @@ class MusicPageState extends State<MusicPage> {
               trailing: Icon(Icons.play_arrow, color: Colors.black, size: 22.0,),
               title: Text("少女", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(1);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.red, size: 22.0,),
               title: Text("勉强幸福", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(2);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.lightBlueAccent, size: 22.0,),
               title: Text("再别康桥", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(3);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.pinkAccent, size: 22.0,),
               title: Text("成全", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(4);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.lightGreenAccent, size: 22.0,),
               title: Text("我爱的人", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(5);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.tealAccent, size: 22.0,),
               title: Text("天真有邪", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(6);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.deepPurpleAccent, size: 22.0,),
               title: Text("致珊珊来迟的你", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(7);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.orangeAccent, size: 22.0,),
               title: Text("早开的晚霞", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(8);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.amberAccent, size: 22.0,),
               title: Text("美妙生活", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(9);},
             ),
             ListTile(
               trailing: Icon(Icons.play_arrow, color: Colors.indigoAccent, size: 22.0,),
               title: Text("突然好想你", textAlign: TextAlign.left,),
               subtitle: Text("林宥嘉", textAlign: TextAlign.left,),
-              onTap: (){playremote();},
+              onTap: (){playremote(10);},
             ),
             ListTile(
               trailing: Icon(Icons.pause, color: Colors.indigoAccent, size: 22.0,),
